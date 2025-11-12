@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Messages Companion</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <h1>AI Messages Companion</h1>
+            <p class="subtitle">Răspunsuri perfecte pentru conversații importante</p>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Conversation Input Section -->
+            <section class="section conversation-section">
+                <label for="conversation" class="label">
+                    <span class="label-text">Conversația Curentă</span>
+                    <span class="label-hint">Lipește întreaga conversație aici</span>
+                </label>
+                <textarea
+                    id="conversation"
+                    class="textarea conversation-input"
+                    placeholder="Persoană A: Bună! Cum a fost weekendul?&#10;Tu: A fost super! Am fost la munte.&#10;Persoană A: Nice! Când ne vedem?"
+                    rows="10"
+                ></textarea>
+            </section>
+
+            <!-- Settings Section -->
+            <section class="section settings-section">
+                <h2 class="section-title">Setări</h2>
+
+                <!-- API Key -->
+                <div class="control-group">
+                    <label for="apiKey" class="label">
+                        <span class="label-text">Google Gemini API Key</span>
+                        <span class="label-hint">Salvat local în browser</span>
+                    </label>
+                    <div class="input-wrapper">
+                        <input
+                            type="password"
+                            id="apiKey"
+                            class="input"
+                            placeholder="Introdu API key-ul tău"
+                        >
+                        <button id="toggleApiKey" class="btn-icon" type="button" aria-label="Toggle API key visibility">
+                            <span id="eyeIcon">👁️</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Temperature Slider -->
+                <div class="control-group">
+                    <label for="temperature" class="label">
+                        <span class="label-text">Temperatură: <span id="tempValue">1.0</span></span>
+                        <span class="label-hint">0.0 = Formal | 1.0 = Balansat | 2.0 = Creativ</span>
+                    </label>
+                    <input
+                        type="range"
+                        id="temperature"
+                        class="slider"
+                        min="0"
+                        max="2"
+                        step="0.1"
+                        value="1.0"
+                    >
+                    <div class="slider-labels">
+                        <span>Rigid</span>
+                        <span>Balansat</span>
+                        <span>Creative</span>
+                    </div>
+                </div>
+
+                <!-- Objective Input -->
+                <div class="control-group">
+                    <label for="objective" class="label">
+                        <span class="label-text">Obiectiv</span>
+                        <span class="label-hint">Ce vrei să obții din această conversație?</span>
+                    </label>
+                    <input
+                        type="text"
+                        id="objective"
+                        class="input"
+                        placeholder="Ex: Vreau să fixez o întâlnire, Vreau să negociez prețul"
+                    >
+                </div>
+            </section>
+
+            <!-- Generate Button -->
+            <div class="action-section">
+                <button id="generateBtn" class="btn btn-primary">
+                    <span class="btn-text">Generează Răspuns</span>
+                    <span class="btn-icon-right">✨</span>
+                </button>
+            </div>
+
+            <!-- Output Section -->
+            <section class="section output-section" id="outputSection" style="display: none;">
+                <div class="output-header">
+                    <h2 class="section-title">Răspunsul Tău</h2>
+                    <button id="copyBtn" class="btn btn-secondary">
+                        <span class="btn-text">Copiază</span>
+                        <span class="btn-icon-right">📋</span>
+                    </button>
+                </div>
+                <div id="responseText" class="response-text"></div>
+            </section>
+
+            <!-- Loading State -->
+            <div id="loadingState" class="loading-state" style="display: none;">
+                <div class="spinner"></div>
+                <p>Generez răspunsul perfect...</p>
+            </div>
+
+            <!-- Error State -->
+            <div id="errorState" class="error-state" style="display: none;">
+                <p id="errorMessage"></p>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Powered by Google Gemini 2.5 Flash</p>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
